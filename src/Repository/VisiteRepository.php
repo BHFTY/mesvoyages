@@ -16,6 +16,10 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Visite[]    findAll()
  * @method Visit[]     findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null]
  */
+
+
+
+
 class VisiteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -47,4 +51,41 @@ class VisiteRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    
+    
+ /**
+ * Retourne toutes les visites triées sur un champ
+ * @param type $champ
+ * @param type $ordre
+ * @return Visite[]
+ */
+    public function findAllOrderBy($champ, $ordre): array{
+        return $this ->createQueryBuilder('v')
+                 ->orderBy('v.'.$champ, $ordre)
+                 ->getQuery()
+                 ->getResult();
+    
+    }
+    
+ /**
+ * Enregistrements dont un champ est égal à une valeur 
+ * ou tous les enregistrement si la valeur est vide
+ *@param type $champ
+ *@param type $valeur
+ *@return Visite[]    
+ */
+ public function findByEqualValue($champ, $valeur) : array{
+     if($valeur==""){
+         return $this->createQueryBuilder('v') //alias de la table
+                 ->orderBy('v.'.$champ.'=:valeur')
+                 ->getQuery()
+                 ->getResult();
+     }else $this->createQueryBuilder('v') //alias de la table
+             ->where('v.'.$champ.'=:valeur')
+             ->setParameter('valeur', $valeur)
+             ->orderBy('v.datecreation', 'DESC')
+             ->getQuery()
+             ->getResult();
+ }   
+    
 }
