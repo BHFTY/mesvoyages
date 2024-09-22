@@ -7,3 +7,11 @@ controllers:
 voyages.showone:
     path: /voyages/showone/{id}
     controller: App\Controller\VoyagesController::showone
+    
+    
+    
+    
+admin.voyages:
+    path: /admin
+    controller: App\Controller\admin\AdminVoyagesController::index
+    
