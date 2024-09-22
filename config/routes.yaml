@@ -10,8 +10,12 @@ voyages.showone:
     
     
     
+admin.voyage.edit:
+    path: /admin/voyages/edit/{id}
+    controller: App\Controller\admin\AdminVoyagesController::edit
     
 admin.voyages:
     path: /admin
     controller: App\Controller\admin\AdminVoyagesController::index
+    
     
