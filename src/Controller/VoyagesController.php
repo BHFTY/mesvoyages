@@ -66,8 +66,20 @@ public function __construct(VisiteRepository $repository) {
          $valeur = $request->get("recherche");
          $visites = $this->repository->findByEqualValue($champ, $valeur);
         return $this->render("pages/voyages.html.twig",[
-            'visites'  =>$visites
+            'visites' =>$visites
        ]);
+    }
+    
+    /**
+     * @Route("/voyages/voyage/{id}", name="voyages.showone")
+     * @param type $id
+     * @return Response
+     */
+    public function showOne($id): Response{
+        $visite = $this->repository->find($id);
+        return $this->render("pages/voyage.html.twig", [
+            'visite'=>$visite
+        ]);         
     }
                 
       

@@ -77,12 +77,12 @@ class VisiteRepository extends ServiceEntityRepository
  public function findByEqualValue($champ, $valeur) : array{
     if($valeur==""){
          return $this->createQueryBuilder('v') //alias de la table
-                 ->orderBy('v.'.$champ.'=:valeur')
+                 ->orderBy('v.'.$champ,'ASC')
                  ->getQuery()
                  ->getResult();
     }else{
        return $this->createQueryBuilder('v') //alias de la table
-               ->where('v.'.$champ.'=:valeur')
+             ->where('v.'.$champ.'=:valeur')
              ->setParameter('valeur', $valeur)
              ->orderBy('v.datecreation', 'DESC')
              ->getQuery()

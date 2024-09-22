@@ -3,3 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+voyages.showone:
+    path: /voyages/showone/{id}
+    controller: App\Controller\VoyagesController::showone
