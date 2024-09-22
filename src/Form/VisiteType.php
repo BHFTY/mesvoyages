@@ -45,4 +45,35 @@ class VisiteType extends AbstractType
             'data_class' => Visite::class,
         ]);
     }
+    
+    /**
+     * @var Collection<int, Environnement>
+     */
+    #[ORM\ManyToMany(targetEntity: Environnement::class)]
+    private Collection $environnements;
+
+    public function __construct(){
+        $this->environnements =new ArrayCollection();
+    }    
+    
+    /**
+     * @return Collection<int, Environnement>
+     */
+    public function getEnvironnements(): Collection{
+        return $this->environnements;
+    }
+    
+    public function addEnvironnement(Environnement $environnement): static{
+        
+        if(!$this->environnements->contains($environnement)){
+            $this->environnements->add($environnement);
+        }
+        return $this;
+    }
+    
+    public function removeEnvironnement(Environnement $environnement):static {
+        
+        $this->environnements->removeElement($environnement);
+        return $this;
+    }
 }
