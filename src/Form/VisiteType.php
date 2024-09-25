@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 
 class VisiteType extends AbstractType
@@ -30,7 +31,12 @@ class VisiteType extends AbstractType
                     $options['data']->getDateCreation() : new DateTime('now'),
                 'label' => 'date'
             ])
-            ->add('note')
+            ->add('note', IntegerType::class,[
+                'attr'=> [
+                    'min' =>0,
+                    'max' =>20
+                ]
+            ])
             ->add('avis')
             ->add('tempmin', null,[
                 'label' =>'t° min'
