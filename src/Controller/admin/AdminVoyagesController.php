@@ -8,6 +8,8 @@
 namespace App\Controller\admin;
 
 use App\Repository\VisiteRepository;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\FormbuilderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,6 +70,13 @@ public function __construct(VisiteRepository $repository) {
             'visite' => $visite,
             'formvisite'  =>$formVisite->createView()
         ]);
+    }
+    
+    #[Route('/admin/suppr/{id}', name: 'admin.voyage.suppr')]
+    public function suppr(int $id): Response{
+        $visite = $this->repository->find($id);
+        $this->repository->remove($visite);
+        return $this->redirectToRoute('admin.voyages');
     }
     
 }

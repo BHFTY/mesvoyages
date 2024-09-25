@@ -3,25 +3,19 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-
-ajout.environnement:
-    path: /admin/environnement/ajout
-    controller: App\Controller\Admin\EnvironnementController::ajout
-
-
-voyages.showone:
-    path: /voyages/showone/{id}
-    controller: App\Controller\VoyagesController::showone
     
-admin.environnements:
-    path: /admin/environnements
-    controller: App\Controller\AdminController::environnements
-   
+admin.voyage.suppr:
+    path: /admin/voyages/suppr/{id}
+    controller: App\Controller\admin\AdminVoyagesController::suppr  
     
 admin.voyage.edit:
     path: /admin/voyages/edit/{id}
     controller: App\Controller\admin\AdminVoyagesController::edit
-    
+
+voyages.showone:
+    path: /voyages/showone/{id}
+    controller: App\Controller\VoyagesController::showone        
+
 admin.voyages:
     path: /admin
     controller: App\Controller\admin\AdminVoyagesController::index
@@ -29,6 +23,17 @@ admin.voyages:
 admin.environnement.supp:
     path: /admin/environnement/suppr/{id}
     controller: App\Controller\admin\AdminEnvironnementController::suppr    
-    
+     
+ajout.environnement:
+    path: /admin/environnement/ajout
+    controller: App\Controller\Admin\EnvironnementController::ajout
+ 
+admin.environnements:
+    path: /admin/environnements
+    controller: App\Controller\AdminController::environnements
+   
 
+voyages_showone:
+    path: /voyages/voyage/{id}
+    controller: App\Controller\admin\VoyageController::showOne
     

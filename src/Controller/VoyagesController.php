@@ -70,11 +70,7 @@ public function __construct(VisiteRepository $repository) {
        ]);
     }
     
-    /**
-     * @Route("/voyages/voyage/{id}", name="voyages.showone")
-     * @param type $id
-     * @return Response
-     */
+    #[Route('/voyages/voyage/{id}', name: 'voyages.showone')]
     public function showOne($id): Response{
         $visite = $this->repository->find($id);
         return $this->render("pages/voyage.html.twig", [
