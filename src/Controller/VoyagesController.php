@@ -62,17 +62,17 @@ public function __construct(VisiteRepository $repository) {
     }
     
     #[Route('/voyages/recherche/{champ}', name: 'voyages.findallequal')]
-    public function findAllEqual($champ, Request $request):Response{
+    public function findAllEqual($champ, Request $request): Response{
         if($this->isCsrfTokenValid('filtre_'.$champ, $request->get('_token'))){
             $valeur = $request->get("recherche");
             $visites = $this->repository->findByEqualValue($champ, $valeur);
-            return $this->render("pages/voyages.html.twig",[
-                'visites' =>$visites
+            return $this->render("pages/voyages.html.twig", [
+                'visites' => $visites
             ]);
         }
-        return $this->redirectToRoute("voyages");  
-    }
-    
+        return $this->redirectToRoute("voyages");
+    }    
+
     #[Route('/voyages/voyage/{id}', name: 'voyages.showone')]
     public function showOne($id): Response{
         $visite = $this->repository->find($id);

@@ -17,9 +17,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Visit[]     findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null]
  */
 
-
-
-
 class VisiteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -89,6 +86,19 @@ class VisiteRepository extends ServiceEntityRepository
              ->getResult();
     }
  }  
+ 
+ /**
+  * Retourne les n visites les plus récentes
+  * @param type $nb
+  * @return Visite[]
+  */
+ public function findAllLasted($nb) : array{
+     return $this ->createQueryBuilder('v')//alias de la table
+        ->orderBy('v.datecreation', 'DESC')
+        ->setMaxResults($nb)
+        ->getQuery()
+        ->getResult();
+ }
  
  /**
   * Ajoute ou modifie une visite

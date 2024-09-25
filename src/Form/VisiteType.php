@@ -31,10 +31,11 @@ class VisiteType extends AbstractType
                     $options['data']->getDateCreation() : new DateTime('now'),
                 'label' => 'date'
             ])
-            ->add('note', IntegerType::class,[
-                'attr'=> [
-                    'min' =>0,
-                    'max' =>20
+            ->add('note',
+            \Symfony\Component\Form\Extension\Core\Type\IntegerType::class,[
+               'attr'=> [
+                   'min' =>0,
+                   'max' =>20
                 ]
             ])
             ->add('avis')

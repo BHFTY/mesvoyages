@@ -40,7 +40,7 @@ public function __construct(VisiteRepository $repository) {
     ]);
     }
     
-    #[Route('/admin/edit/{id}', name: 'admin.voyages.edit')]
+    #[Route('/admin/edit/{id}', name: 'admin.voyage.edit')]
     public function edit(int $id,Request $request): Response {
         $visite = $this->repository->find($id);
         $formVisite = $this->createForm(VisiteType::class, $visite);
