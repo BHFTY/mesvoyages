@@ -28,6 +28,7 @@ class Visite
     private ?string $pays = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Assert\LessThanOrEqual("now")]
     private ?\DateTimeInterface $datecreation = null;
 
     #[ORM\Column(nullable: true)]
